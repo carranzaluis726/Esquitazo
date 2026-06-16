@@ -1,0 +1,841 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Esquitazo S.A. de C.V. | Tienda Oficial</title>
+    <style>
+        :root {
+            --mexican-yellow: #F4C430;
+            --mexican-orange: #E65100;
+            --corn-green: #2E7D32;
+            --charcoal: #212121;
+            --cream-bg: #FFFDE7;
+            --white: #FFFFFF;
+            --shadow: rgba(0, 0, 0, 0.08);
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            background-color: var(--cream-bg);
+            color: var(--charcoal);
+            line-height: 1.6;
+        }
+
+        /* Banner Principal */
+        .hero-banner {
+            background: linear-gradient(135deg, var(--mexican-yellow), var(--mexican-orange));
+            color: var(--white);
+            text-align: center;
+            padding: 3rem 1rem;
+            position: relative;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.12);
+        }
+
+        .hero-banner h1 {
+            font-size: 3.5rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            font-weight: 900;
+        }
+
+        .hero-banner p {
+            font-size: 1.3rem;
+            font-style: italic;
+            margin-top: 0.5rem;
+            font-weight: 600;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: var(--charcoal);
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+        }
+
+        nav button {
+            background: none;
+            border: none;
+            color: #B0BEC5;
+            padding: 1.2rem 1.5rem;
+            font-size: 0.95rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        nav button:hover, nav button.active {
+            color: var(--white);
+            background-color: var(--corn-green);
+            border-bottom: 4px solid var(--mexican-yellow);
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2.5rem auto;
+            padding: 0 1.5rem;
+        }
+
+        /* Tablero Principal con tu logo de fondo */
+        .tab-content {
+            display: none;
+            background-color: var(--white);
+            padding: 2.5rem;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px var(--shadow);
+            border-top: 5px solid var(--mexican-orange);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Capa de fondo usando tu imagen corporativa original */
+        #tienda::before {
+            content: "";
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url('WhatsApp Image 2026-06-16 at 4.22.59 PM.jpeg'); 
+            background-repeat: no-repeat;
+            background-position: center;
+            background-size: 45%;
+            opacity: 0.08;
+            z-index: -1;
+            border-radius: 16px;
+        }
+
+        .tab-content.active {
+            display: block;
+            animation: slideUp 0.4s ease forwards;
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(15px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        h2 {
+            color: var(--corn-green);
+            font-size: 1.8rem;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid #E0E0E0;
+            padding-bottom: 0.5rem;
+        }
+
+        h3 {
+            color: var(--mexican-orange);
+            margin: 1.8rem 0 0.8rem 0;
+            font-size: 1.3rem;
+        }
+
+        p {
+            margin-bottom: 1.2rem;
+            color: #424242;
+        }
+
+        /* Grid del Menú Interactivo */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 1.5rem;
+        }
+
+        .product-card {
+            background: rgba(255, 255, 255, 0.92);
+            border: 2px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            position: relative;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.02);
+        }
+
+        .product-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--mexican-orange);
+        }
+
+        .product-card h4 {
+            font-size: 1.4rem;
+            color: var(--charcoal);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-price {
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: var(--mexican-orange);
+            margin: 0.5rem 0;
+        }
+
+        .customization {
+            background: #F9F9F9;
+            padding: 0.8rem;
+            border-radius: 6px;
+            margin-bottom: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .customization label {
+            display: block;
+            margin-bottom: 0.3rem;
+            font-weight: 600;
+        }
+
+        .btn-add {
+            background-color: var(--corn-green);
+            color: white;
+            border: none;
+            padding: 0.8rem;
+            border-radius: 6px;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            transition: background 0.2s;
+        }
+
+        .btn-add:hover {
+            background-color: #1B5E20;
+        }
+
+        /* Distribución Tienda: Productos y Carrito */
+        .shop-layout {
+            display: grid;
+            grid-template-columns: 2fr 1fr;
+            gap: 2rem;
+        }
+
+        @media (max-width: 900px) {
+            .shop-layout { grid-template-columns: 1fr; }
+        }
+
+        /* Lateral del Carrito */
+        .cart-panel {
+            background: rgba(245, 245, 245, 0.95);
+            border: 1px solid #E0E0E0;
+            border-radius: 12px;
+            padding: 1.5rem;
+            align-self: start;
+        }
+
+        .cart-item {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #E0E0E0;
+            font-size: 0.95rem;
+        }
+
+        .cart-item-details {
+            max-width: 70%;
+        }
+
+        .cart-item-extra {
+            font-size: 0.75rem;
+            color: #757575;
+            display: block;
+        }
+
+        .btn-remove {
+            background: none;
+            border: none;
+            color: #D32F2F;
+            font-weight: bold;
+            cursor: pointer;
+        }
+
+        .payment-method {
+            margin: 1.5rem 0 1rem 0;
+            background: #FFFFFF;
+            padding: 1rem;
+            border-radius: 8px;
+            border: 1px solid #E0E0E0;
+        }
+
+        .payment-method h4 {
+            font-size: 0.95rem;
+            margin-bottom: 0.5rem;
+            color: var(--charcoal);
+        }
+
+        .payment-options {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .payment-options label {
+            font-size: 0.9rem;
+            cursor: pointer;
+            font-weight: 600;
+        }
+
+        .cart-total {
+            font-size: 1.3rem;
+            font-weight: 700;
+            text-align: right;
+            margin: 1rem 0;
+            color: var(--charcoal);
+        }
+
+        .btn-checkout {
+            width: 100%;
+            background: var(--mexican-orange);
+            color: white;
+            border: none;
+            padding: 1rem;
+            font-size: 1.1rem;
+            font-weight: 700;
+            border-radius: 6px;
+            cursor: pointer;
+            text-transform: uppercase;
+        }
+
+        .btn-checkout:hover {
+            background: #BF360C;
+        }
+
+        /* Secciones Corporativas Estilo Grid */
+        .grid-layout {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 1.5rem;
+            margin-top: 1.5rem;
+        }
+
+        .card {
+            background: #F9F9F9;
+            border: 1px solid #E0E0E0;
+            border-radius: 8px;
+            padding: 1.5rem;
+            border-left: 4px solid var(--corn-green);
+        }
+
+        /* Lista de Políticas Estilizada */
+        .policy-list {
+            list-style: none;
+            margin-top: 1rem;
+        }
+
+        .policy-list li {
+            background: #F9F9F9;
+            margin-bottom: 0.8rem;
+            padding: 1rem 1.2rem;
+            border-radius: 6px;
+            border-left: 4px solid var(--mexican-orange);
+            font-weight: 500;
+        }
+
+        /* Tarjetas de Valores Específicas */
+        .value-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.2rem;
+            margin-top: 1rem;
+        }
+
+        .value-card {
+            background: #FFF;
+            border: 1px solid #E2E8F0;
+            border-radius: 8px;
+            padding: 1.2rem;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.02);
+        }
+
+        .value-card strong {
+            color: var(--corn-green);
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.4rem;
+        }
+
+        /* Tarjetas de Promociones Limpias */
+        .promo-card {
+            background: #FFFDE7;
+            border: 2px dashed var(--mexican-yellow);
+            border-radius: 12px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .promo-card h3 {
+            margin-top: 0;
+            color: var(--mexican-orange);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .promo-price {
+            background: var(--mexican-orange);
+            color: white;
+            padding: 0.2rem 0.6rem;
+            border-radius: 4px;
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        /* Simulación de Ticket de Venta */
+        .ticket-modal {
+            display: none;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.5);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .ticket-body {
+            background: white;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 2rem;
+            width: 360px;
+            border-radius: 4px;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+            position: relative;
+        }
+
+        .ticket-header {
+            text-align: center;
+            border-bottom: 2px dashed #000;
+            padding-bottom: 1rem;
+            margin-bottom: 1rem;
+        }
+
+        .ticket-footer {
+            text-align: center;
+            border-top: 2px dashed #000;
+            padding-top: 1rem;
+            margin-top: 1rem;
+            font-size: 0.85rem;
+        }
+
+        .btn-close-ticket {
+            background: var(--charcoal);
+            color: white;
+            border: none;
+            padding: 0.5rem 1rem;
+            width: 100%;
+            margin-top: 1rem;
+            cursor: pointer;
+            font-family: sans-serif;
+            font-weight: bold;
+        }
+
+        footer {
+            background-color: var(--charcoal);
+            color: #90A4AE;
+            text-align: center;
+            padding: 2rem 1rem;
+            margin-top: 5rem;
+            font-size: 0.9rem;
+            border-top: 4px solid var(--mexican-orange);
+        }
+    </style>
+</head>
+<body>
+
+    <header class="hero-banner">
+        <h1>Esquitazo S.A. de C.V.</h1>
+        <p>“Grande en sabor, enorme en antojo”</p>
+    </header>
+
+    <nav>
+        <button class="nav-btn active" onclick="openTab(event, 'tienda')">🛒 Hacer Pedido</button>
+        <button class="nav-btn" onclick="openTab(event, 'historia')">Historia</button>
+        <button class="nav-btn" onclick="openTab(event, 'identidad')">Identidad</button>
+        <button class="nav-btn" onclick="openTab(event, 'politicas')">Políticas</button>
+        <button class="nav-btn" onclick="openTab(event, 'personal')">Personal</button>
+        <button class="nav-btn" onclick="openTab(event, 'marketing')"> Promociones</button>
+    </nav>
+
+    <div class="container">
+        
+        <!-- PESTAÑA COMPRA/VENTA INTERACTIVA -->
+        <div id="tienda" class="tab-content active">
+            <h2>Punto de Venta e Interacción Comercial</h2>
+            <p>Selecciona tus productos, personalizos y procesa tu compra. Al finalizar, el pedido se enviará directamente por WhatsApp al centro de atención.</p>
+            
+            <div class="shop-layout">
+                <!-- Catálogo -->
+                <div>
+                    <h3>Nuestro Menú</h3>
+                    <div class="menu-grid">
+                        
+                        <!-- El Piojo -->
+                        <div class="product-card">
+                            <div>
+                                <h4>El Piojo (10 oz)</h4>
+                                <p>Esquite clásico desgranado tradicional mexicano.</p>
+                                <div class="product-price">$40.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" onclick="addToCart('El Piojo', 40.00, this)">Agregar</button>
+                        </div>
+
+                        <!-- El Rey Dorado -->
+                        <div class="product-card">
+                            <div>
+                                <h4>El Rey Dorado (14 oz)</h4>
+                                <p>Porción premium de Esquite clásico desgranado tradicional mexicano..</p>
+                                <div class="product-price">$55.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" onclick="addToCart('El Rey Dorado', 55.00, this)">Agregar</button>
+                        </div>
+
+                        <!-- El Envidioso -->
+                        <div class="product-card">
+                            <div>
+                                <h4>El Envidioso</h4>
+                                <p>Base crujiente de Sabritas/Tostitos bañada con un esquite chico.</p>
+                                <div class="product-price">$65.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" onclick="addToCart('El Envidioso', 65.00, this)">Agregar</button>
+                        </div>
+
+                        <!-- La Marranada -->
+                        <div class="product-card">
+                            <div>
+                                <h4>La Marranada</h4>
+                                <p>Charola especial con Elote, Sopa Maruchan (pollo o camarón) y Sabritas a elección.</p>
+                                <div class="product-price">$90.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" onclick="addToCart('La Marranada', 90.00, this)">Agregar</button>
+                        </div>
+
+                        <!-- Combo La Pareja Ideal -->
+                        <div class="product-card" style="border: 2px solid var(--mexican-yellow);">
+                            <div>
+                                <h4>Combo "La Pareja Ideal"</h4>
+                                <p>1 Marranada + 2 Piojos. ¡Perfecto para compartir!</p>
+                                <div class="product-price">$155.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" style="background-color: var(--mexican-orange);" onclick="addToCart('Combo La Pareja Ideal', 155.00, this)">Agregar Combo</button>
+                        </div>
+
+                        <!-- Doble Envidia -->
+                        <div class="product-card" style="border: 2px solid var(--mexican-yellow);">
+                            <div>
+                                <h4>Promo "Doble Envidia"</h4>
+                                <p>2 Envidiosos (Tostitos con elote). El segundo va a mitad de precio.</p>
+                                <div class="product-price">$98.00 MXN</div>
+                            </div>
+                            <div class="customization">
+                                <label><input type="checkbox" class="top-mayo" checked> Mayonesa</label>
+                                <label><input type="checkbox" class="top-queso" checked> Queso</label>
+                            </div>
+                            <button class="btn-add" style="background-color: var(--corn-green);" onclick="addToCart('Promo Doble Envidia', 98.00, this)">Agregar Promo</button>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!-- Panel de Caja/Carrito -->
+                <div class="cart-panel">
+                    <h3>Caja Registradora</h3>
+                    <div id="cart-items-container">
+                        <p style="color: #9e9e9e; font-style: italic; text-align: center; margin-top: 1rem;">El carrito está vacío</p>
+                    </div>
+                    
+                    <!-- Método de Pago -->
+                    <div class="payment-method">
+                        <h4>Forma de Pago:</h4>
+                        <div class="payment-options">
+                            <label><input type="radio" name="pay-method" value="Efectivo" checked> Efectivo</label>
+                            <label><input type="radio" name="pay-method" value="Tarjeta"> Tarjeta</label>
+                        </div>
+                    </div>
+
+                    <div class="cart-total">Total: $<span id="cart-total-val">0.00</span></div>
+                    <button class="btn-checkout" onclick="processCheckout()">Procesar Venta / Enviar</button>
+                </div>
+            </div>
+        </div>
+
+        <!-- HISTORIA -->
+        <div id="historia" class="tab-content">
+            <h2>Nuestra Historia</h2>
+            <p><strong>Esquitazo S.A. de C.V.</strong> nació en las aulas del <em>Colegio de Bachilleres Plantel Cancún Dos</em> como una iniciativa emprendedora estudiantil. El proyecto surgió de la observación del mercado de snacks urbanos en Cancún, Quintana Roo; el equipo identificó la oportunidad de transformar el consumo tradicional del esquite callejero en una experiencia gastronómica formal, higiénica e innovadora.</p>
+            <p>Convocando un equipo multidisciplinario de 11 integrantes y uniendo esfuerzos materiales, financieros y creativos, la empresa se estructuró bajo el concepto visual de la Lotería Mexicana. Esta temática celebra la identidad nacional y otorga personalidad única a cada una de nuestras creaciones culinarias.</p>
+        </div>
+
+        <!-- IDENTIDAD -->
+        <div id="identidad" class="tab-content">
+            <h2>Identidad Institucional</h2>
+            <h3>Misión</h3>
+            <p>Somos una empresa estudiantil de Cancún, Quintana Roo, dedicada a la elaboración y venta de esquites y charolas preparadas con sabritas y elote, ofreciendo productos deliciosos y de alta calidad. Nuestro compromiso es brindar un excelente servicio, crear experiences únicas para nuestros clientes y trabajar en equipo con responsabilidad, creatividad y pasión por el emprendimiento.</p>
+            <h3>Visión</h3>
+            <p>Para el año 2028, ser una empresa reconocida en Cancún por el sabor, calidad e innovación de nuestros productos, logrando expandirnos con varias sucursales y consolidándonos como un negocio exitoso que nació del esfuerzo, la unión y el talento de jóvenes emprendedores.</p>
+            
+            <h3>Valores corporativos</h3>
+            <div class="value-grid">
+                <div class="value-card">
+                    <strong>1. Responsabilidad</strong>
+                    <p>Cumplimos con nuestros compromisos y tareas como equipo.</p>
+                </div>
+                <div class="value-card">
+                    <strong>2. Trabajo en equipo</strong>
+                    <p>Colaboramos unidos para lograr nuestras metas.</p>
+                </div>
+                <div class="value-card">
+                    <strong>3. Calidad</strong>
+                    <p>Seleccionamos ingredientes frescos y cuidamos cada detalle en la preparación.</p>
+                </div>
+                <div class="value-card">
+                    <strong>4. Respeto</strong>
+                    <p>Valoramos a nuestros clientes, compañeros y proveedores.</p>
+                </div>
+                <div class="value-card">
+                    <strong>5. Creatividad</strong>
+                    <p>Innovamos en sabores y presentaciones para ofrecer algo diferente.</p>
+                </div>
+                <div class="value-card">
+                    <strong>6. Compromiso</strong>
+                    <p>Nos esforzamos cada día para crecer como empresa y como estudiantes emprendedores.</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- POLÍTICAS -->
+        <div id="politicas" class="tab-content">
+            <h2>Políticas de la Empresa</h2>
+            <ul class="policy-list">
+                <li>Promover la igualdad entre todos los integrantes.</li>
+                <li>Mantener la confidencialidad de la información interna.</li>
+                <li>Cumplir con puntualidad las reuniones y entregas.</li>
+                <li>Fomentar el respeto y el diálogo para la resolución de conflictos.</li>
+                <li>Priorizar el trabajo en equipo y compañerismo.</li>
+            </ul>
+        </div>
+
+        <!-- PERSONAL -->
+        <div id="personal" class="tab-content">
+            <h2>Personal</h2>
+            <div class="grid-layout">
+                <div class="card"><h4>Aileen Monserrath Marfil del Moral</h4><p>Gerente General</p></div>
+                <div class="card"><h4>Dana Noemí González Hernández</h4><p>Subgerente</p></div>
+                <div class="card"><h4>Luis Ángel Carranza Velazquez</h4><p>Gerente de Ventas</p></div>
+                <div class="card"><h4>Aleyne Scarlett Chacón Castillo</h4><p>Gerente de Recursos Financieros</p></div>
+                <div class="card"><h4>Franqui Ávila Ramos</h4><p>Auxiliar de Recursos Financieros</p></div>
+                <div class="card"><h4>Iván Alexander Cob May</h4><p>Gerente de Recursos Materiales</p></div>
+                <div class="card"><h4>Mario Iván Morales Clara</h4><p>Auxiliar de Recursos Materiales</p></div>
+                <div class="card"><h4>Maximiliano Ríos Serrano</h4><p>Auxiliar de Recursos Materiales</p></div>
+                <div class="card"><h4>Samantha Valeria Gil Loria</h4><p>Directora de Marketing</p></div>
+                <div class="card"><h4>Silvia Jennifer Castañeda García</h4><p>Auxiliar de Marketing</p></div>
+                <div class="card"><h4>Valentina Varela Vázquez</h4><p>Gerente de Recursos Humanos</p></div>
+            </div>
+        </div>
+
+        <!-- PESTAÑA DE MARKETING / PROMOCIONES -->
+        <div id="marketing" class="tab-content">
+            <h2>Estrategias de Comercialización y Fidelización</h2>
+            <p>Plan institucional diseñado para potenciar el crecimiento de ESQUITAZO, maximizar la rotación de inventarios y asegurar la rentabilidad neta.</p>
+            
+            <!-- Combo La Pareja Ideal -->
+            <div class="promo-card">
+                <h3>Combo "La Pareja Ideal" <span class="promo-price">$155.00 MXN</span></h3>
+                <p>Incluye 1 Marranada ($90.00) + 2 Piojos ($40.00 c/u).</p>
+                <p><em>Ahorro para el cliente:</em> $15.00 MXN (Precio regular: $170.00 MXN).</p>
+            </div>
+
+            <!-- Doble Envidia -->
+            <div class="promo-card">
+                <h3>"Doble Envidia" (En Tostitos) <span class="promo-price">2x1.5</span></h3>
+                <p>En la compra de unos "Envidiosos" (Tostitos con elote) de $65.00, el segundo producto se vende a mitad de precio ($32.50). Total por el par: $98.00 MXN.</p>
+            </div>
+
+            <!-- Etiqueta y Gana -->
+            <div class="promo-card">
+                <h3>Dinámica "Etiqueta y Gana" <span class="promo-price">¡GRATIS!</span></h3>
+                <p>Todo cliente que comparta una publicidad de la empresa en redes sociales (Instagram/Facebook/TikTok) etiquetando a ESQUITAZO, entra a un concurso de likes. Tendrá hasta el día de la Feria para acumular reacciones; el ganador se llevará una Marranada gratis.</p>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- MODAL / INTERFAZ DEL TICKET DE VENTA -->
+    <div id="ticketModal" class="ticket-modal">
+        <div class="ticket-body">
+            <div class="ticket-header">
+                <h3>ESQUITAZO S.A. DE C.V.</h3>
+                <p>Plantel Cancún Dos</p>
+                <p>Venta Directa Real</p>
+                <p id="ticket-date"></p>
+                <p id="ticket-id"></p>
+            </div>
+            <div id="ticket-items"></div>
+            <p style="margin-top:0.5rem; font-size:0.9rem;" id="ticket-payment"></p>
+            <div class="ticket-footer">
+                <h4>TOTAL PAGADO: $<span id="ticket-total"></span> MXN</h4>
+                <p style="margin-top: 1rem; font-weight: bold; color: var(--corn-green);">¡Redirigiendo a WhatsApp corporativo!</p>
+                <button class="btn-close-ticket" onclick="closeTicket()">Cerrar e Iniciar Nueva Venta</button>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2026 Esquitazo S.A. de C.V. Todos los derechos reservados.</p>
+        <p>Colegio de Bachilleres del Estado de Quintana Roo | Cancún, Quintana Roo</p>
+    </footer>
+
+    <script>
+        let cart = [];
+        let total = 0;
+        const TARGET_PHONE = "529982124503"; 
+
+        function openTab(evt, tabName) {
+            let i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tab-content");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+                tabcontent[i].classList.remove("active");
+            }
+            tablinks = document.getElementsByClassName("nav-btn");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].classList.remove("active");
+            }
+            document.getElementById(tabName).style.display = "block";
+            document.getElementById(tabName).classList.add("active");
+            evt.currentTarget.classList.add("active");
+        }
+
+        function addToCart(name, price, buttonElement) {
+            const card = buttonElement.parentElement;
+            const mayo = card.querySelector(".top-mayo")?.checked ? "Con Mayonesa" : "Sin Mayonesa";
+            const queso = card.querySelector(".top-queso")?.checked ? "Con Queso" : "Sin Queso";
+            
+            const extras = `${mayo}, ${queso}`;
+
+            cart.push({ name, price, extras });
+            updateCartUI();
+        }
+
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            updateCartUI();
+        }
+
+        function updateCartUI() {
+            const container = document.getElementById("cart-items-container");
+            if (cart.length === 0) {
+                container.innerHTML = '<p style="color: #9e9e9e; font-style: italic; text-align: center; margin-top: 1rem;">El carrito está vacío</p>';
+                total = 0;
+                document.getElementById("cart-total-val").innerText = "0.00";
+                return;
+            }
+
+            container.innerHTML = "";
+            total = 0;
+
+            cart.forEach((item, index) => {
+                total += item.price;
+                const div = document.createElement("div");
+                div.className = "cart-item";
+                div.innerHTML = `
+                    <div class="cart-item-details">
+                        <strong>${item.name}</strong>
+                        <span class="cart-item-extra">${item.extras}</span>
+                    </div>
+                    <div>
+                        <span>$${item.price.toFixed(2)}</span>
+                        <button class="btn-remove" onclick="removeFromCart(${index})">X</button>
+                    </div>
+                `;
+                container.appendChild(div);
+            });
+
+            document.getElementById("cart-total-val").innerText = total.toFixed(2);
+        }
+
+        function processCheckout() {
+            if (cart.length === 0) {
+                alert("Agrega por lo menos un Esquite para procesar el cobro.");
+                return;
+            }
+
+            const paymentMethod = document.querySelector('input[name="pay-method"]:checked').value;
+            const date = new Date();
+            const folio = `ESQ-${Math.floor(100000 + Math.random() * 900000)}`;
+            
+            document.getElementById("ticket-date").innerText = `Fecha: ${date.toLocaleDateString()} ${date.toLocaleTimeString()}`;
+            document.getElementById("ticket-id").innerText = `FOLIO: ${folio}`;
+            document.getElementById("ticket-payment").innerText = `Método de pago: ${paymentMethod}`;
+            
+            const itemsContainer = document.getElementById("ticket-items");
+            itemsContainer.innerHTML = "";
+
+            let whatsappText = `* NUEVO PEDIDO - ESQUITAZO S.A. DE C.V.*\n`;
+            whatsappText += `=========================\n`;
+            whatsappText += `*Folio:* ${folio}\n`;
+            whatsappText += `*Fecha:* ${date.toLocaleDateString()} ${date.toLocaleTimeString()}\n`;
+            whatsappText += `=========================\n\n`;
+
+            cart.forEach(item => {
+                const p = document.createElement("p");
+                p.style.margin = "0.4rem 0";
+                p.innerHTML = `1x ${item.name} .... $${item.price.toFixed(2)}<br><span style="font-size:0.75rem; color:#555;">> ${item.extras}</span>`;
+                itemsContainer.appendChild(p);
+
+                whatsappText += `• *1x ${item.name}* ($${item.price.toFixed(2)})\n  _${item.extras}_\n`;
+            });
+
+            whatsappText += `\n=========================\n`;
+            whatsappText += `*Método de Pago:* ${paymentMethod}\n`;
+            whatsappText += `*TOTAL A COBRAR:* $${total.toFixed(2)} MXN\n`;
+            whatsappText += `=========================\n`;
+            whatsappText += `_¡Grande en sabor, enorme en antojo!_`;
+
+            document.getElementById("ticket-total").innerText = total.toFixed(2);
+            document.getElementById("ticketModal").style.display = "flex";
+
+            const encodedText = encodeURIComponent(whatsappText);
+            const whatsappUrl = `https://api.whatsapp.com/send?phone=${TARGET_PHONE}&text=${encodedText}`;
+            
+            setTimeout(() => {
+                window.open(whatsappUrl, '_blank');
+            }, 1200);
+        }
+
+        function closeTicket() {
+            cart = [];
+            updateCartUI();
+            document.getElementById("ticketModal").style.display = "none";
+        }
+    </script>
+</body>
+</html>
